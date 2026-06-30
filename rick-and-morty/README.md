@@ -1,5 +1,5 @@
 
-```markdown
+
 # 🧪 Rick and Morty App
 
 Uma aplicação web robusta de alto desempenho desenvolvida em React e estruturada com o ecossistema modular do Vite. O projeto consome a API oficial do Rick and Morty para listar, filtrar e gerenciar dados sobre personagens, episódios e localizações através de um fluxo assíncrono otimizado e gerenciamento de estado global nativo.
@@ -22,7 +22,7 @@ Uma aplicação web robusta de alto desempenho desenvolvida em React e estrutura
 
 A estrutura interna reflete os princípios de responsabilidade única e escalabilidade de arquivos:
 
-```text
+```
 src/
 ├── components/
 │   ├── EpisodioCard.jsx       # Card dinâmico com requisição sob demanda (Lazy Loading)
@@ -40,28 +40,6 @@ src/
 └── style.css                  # Folha de estilo e normalizações globais do app
 
 ```
-
----
-
-## ⚙️ Detalhes das Implementações Técnicas
-
-### 1. Estado Global de Favoritos (`FavoritosContext.jsx`)
-
-Gerenciado via **Context API**, o provider encapsula um array reativo e fornece métodos de mutação imutável com verificação de integridade (`.some()` e `.filter()`). Ele impede a adição de duplicatas no payload e disponibiliza verificação instantânea se o elemento já é favoritado.
-
-### 2. Lazy Loading de Personagens em Episódios (`EpisodioCard.jsx`)
-
-Para evitar sobrecarga no carregamento inicial da API de episódios, o card armazena apenas a lista bruta de URLs. Ao clicar em *"Ver personagens"*, o componente dispara uma requisição em lote agrupando os IDs (`.join(',')`), otimizando as requisições HTTP para buscar as informações dos personagens de uma única vez.
-
-### 3. Filtros Complexos por Temporada (`Episodios.jsx`)
-
-O app contorna a limitação nativa da API (que não possui endpoint de busca direta por número de temporada) injetando um dicionário estático contendo os intervalos de IDs correspondentes às temporadas de 1 a 5, fatiando o array no lado do cliente (`.slice()`) para alimentar a paginação.
-
-### 4. Coleta Dinâmica de Tipos (`Localizacoes.jsx`)
-
-A tela de localizações executa um loop assíncrono incremental na inicialização (`while(url)`) para varrer todas as páginas da API e alimentar uma estrutura de dados do tipo **`Set`**. Isso garante o isolamento automático de tipos únicos e monta dinamicamente o menu de botões de pílulas ordenados alfabeticamente (`.sort()`).
-
----
 
 ## 🚀 Como Rodar o Ambiente Localmente
 
